@@ -44,11 +44,46 @@ html,body{
 }
 
 .hero-center-text p{
-  font-size:16px;
+  font-size:40px;
   color:var(--muted);
 }
   .hero-center-text{
   animation:fadeUp 1.2s ease forwards;
+}
+.hero-center-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  text-align:center;
+  z-index:3;
+}
+
+/* Initial blur state */
+.reveal{
+  opacity:0;
+  filter:blur(12px);
+  animation:blurReveal 1.6s ease forwards;
+}
+
+/* Apple-style reveal */
+@keyframes blurReveal{
+  0%{
+    opacity:0;
+    filter:blur(6px);
+    transform:translate(-50%, -45%);
+  }
+  100%{
+    opacity:1;
+    filter:blur(0);
+    transform:translate(-50%, -50%);
+  }
+}
+.reveal{
+  animation-delay:0.2s;
+}
+.reveal{
+  will-change: filter, opacity, transform;
 }
 
 @keyframes fadeUp{
@@ -76,11 +111,11 @@ html,body{
   -webkit-text-fill-color: transparent;
 }
 .hero-center-text h2{
-  letter-spacing:0.5px;
+  letter-spacing:0.2px;
 }
 
 .hero-center-text p{
-  letter-spacing:0.3px;
+  letter-spacing:0.2px;
 }
 
   
@@ -145,6 +180,118 @@ header nav a:hover{color:var(--accent)}
   max-width:520px;
 }
 .hero h1{font-size:52px;font-weight:700}
+/* HERO TEXT TYPOGRAPHY CONTROL */
+
+.hero-title{
+  margin-bottom: 18px;
+  line-height: 1.1;
+}
+
+/* MAIN TITLE */
+.hero-main{
+  font-size: 48px;      
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--accent);
+}
+
+/* SUB TITLE */
+.hero-sub{
+  font-size: 26px;    
+  font-weight: 500;
+  color: #b0b6c3;
+}
+
+/* TAGLINE */
+.hero-tagline{
+  font-size: 8px;
+  color: var(--muted);
+  letter-spacing: 1px;
+}
+
+/* KEYWORDS */
+.hero-key{
+  font-weight: 600;
+  letter-spacing: 1.2px;
+}
+
+/* DATA */
+.hero-key.data{
+  font-size: 30px;    
+  color: #4fa3ff;
+}
+
+/* INTELLIGENCE */
+.hero-key.intelligence{
+  font-size: 32px;      
+  color: #7cf6ff;
+}
+@media (max-width: 768px){
+  .hero-main{ font-size: 34px; }
+  .hero-sub{ font-size: 20px; }
+  .hero-tagline{ font-size: 15px; }
+  .hero-key.data{ font-size: 16px; }
+  .hero-key.intelligence{ font-size: 17px; }
+}
+.hero-main{
+  text-transform: uppercase;
+}
+
+.hero-sub{
+  opacity: 0.9;
+}
+/* Initial hidden state */
+.animate-main,
+.animate-sub{
+  display:inline-block;
+  opacity:0;
+}
+
+/* AI ENGINEER – appears first */
+.animate-main{
+  animation: mainReveal 1.2s ease forwards;
+}
+.animate-main{
+  letter-spacing: 1.5px;
+}
+
+
+/* IN PROGRESS – delayed & softer */
+.animate-sub{
+  animation: subReveal 1.2s ease forwards;
+  animation-delay: 0.4s;
+}
+
+/* Keyframes */
+@keyframes mainReveal{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+@media (max-width:768px){
+  .animate-main,
+  .animate-sub{
+    animation-duration: 1s;
+  }
+}
+
+
+@keyframes subReveal{
+  from{
+    opacity:0;
+    transform:translateY(6px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
 
 /* TEXT MORPH */
 .morph{
@@ -305,13 +452,22 @@ footer{
     <a href="contact">Contact</a>
   </nav>
 </header>
-  
-<div class="hero-center-text">
-  <h1><span class="gradient-text">AI ENGINEER</span> IN PROGRESS.</h1>
-  <p>BUILDING WITH <span class="gradient-text">DATA</span> AND <span class="gradient-text">INTELLIGENCE</span>.</p>
+  <section class="hero">
+
+<div class="hero-center-text reveal">
+  <h2 class="hero-title">
+    <span class="hero-main">AI ENGINEER</span><br>
+    <span class="hero-sub">IN PROGRESS.</span>
+  </h2>
+
+  <p class="hero-tagline">
+    BUILDING WITH
+    <span class="hero-key data">DATA</span> &
+    <span class="hero-key intelligence">INTELLIGENCE</span>.
+  </p>
 </div>
 
-  
+</section>  
 </section>
 
 <section id="about">
