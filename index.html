@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Your Name – Portfolio</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lakshay Kumar – Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -16,25 +16,29 @@
   --accent:#4fa3ff;
 }
 
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins', sans-serif;}
+
 body{
   background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
+  width: 100%;
 }
 
-/* MOUSE GLOW */
-body::before{
-  content:"";
-  position:fixed;
-  width:100px;
-  height:100px;
-  background:radial-gradient(circle, rgba(83, 148, 217, 0.12), transparent 65%);
-  pointer-events:none;
-  transform:translate(-50%,-50%);
-  left:var(--x);
-  top:var(--y);
-  z-index:1;
+/* MOUSE GLOW - Only visible on devices that support hover */
+@media (hover: hover) {
+  body::before{
+    content:"";
+    position:fixed;
+    width:100px;
+    height:100px;
+    background:radial-gradient(circle, rgba(83, 148, 217, 0.15), transparent 65%);
+    pointer-events:none;
+    transform:translate(-50%,-50%);
+    left:var(--x, 50%);
+    top:var(--y, 50%);
+    z-index:1;
+  }
 }
 
 /* NAV */
@@ -44,39 +48,40 @@ header{
   padding:20px 60px;
   display:flex;
   justify-content:space-between;
+  align-items: center;
+  /* Safari Support */
+  -webkit-backdrop-filter:blur(20px); 
   backdrop-filter:blur(20px);
   background:rgba(0,0,0,.45);
-  z-index:10;
+  z-index:100;
 }
+
+header h3 { font-size: 1.2rem; }
+
 nav a{
   margin-left:30px;
   color:var(--muted);
   font-size:14px;
-  text-decoration: none;   /* ← ADD THIS */
+  text-decoration: none;
+  transition: 0.3s;
 }
 
+nav a:hover { color: var(--accent); }
 
 /* HERO */
 .hero{
-  height:100vh;
+  min-height:100vh;
   display:flex;
   align-items:center;
   padding:0 10%;
   position:relative;
+  padding-top: 80px; /* Space for fixed header */
 }
-.hero::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:rgba(0,0,0,.75);
-}
-.hero-content{position:relative;z-index:2;max-width:520px}
-.hero h1{font-size:52px;font-weight:700}
 
 /* TEXT MORPH */
 .morph{
-  height:28px;
-  margin-top:10px;
+  height:40px;
+  margin-top:15px;
   position:relative;
   overflow:hidden;
 }
@@ -85,38 +90,40 @@ nav a{
   opacity:0;
   filter:blur(8px);
   transition:.6s;
+  font-size: 24px;
+  color: var(--muted);
+  left: 0;
 }
 .morph span.active{
   opacity:1;
   filter:blur(0);
 }
 
+.hero h1{
+    font-size:52px;
+    font-weight:700;
+    line-height: 1.1;
+}
+
 /* BUTTONS */
 .buttons{margin-top:30px}
 .btn{
-  padding:30px 30px;
+  padding:15px 30px;
   border-radius:30px;
   border:1px solid var(--accent);
   margin-right:15px;
   background:none;
   color:white;
-  transition:.5s;
+  transition:.3s;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
 }
 .btn.primary{background:var(--accent);color:black}
+
 .btn:hover{
   transform:translateY(-3px);
   box-shadow:0 12px 30px rgba(79,163,255,.35);
-    scroll-behavior:smooth;
-    header nav a{
-  text-decoration: none !important;
-}
-header nav a,
-header nav a:hover,
-header nav a:focus,
-header nav a:active,
-header nav a:visited {
-  text-decoration: none !important;
-}
 }
 
 /* SECTIONS */
@@ -131,9 +138,11 @@ section{
 section.show{opacity:1;transform:none}
 h2{color:var(--accent);margin-bottom:40px}
 
-/* GLASS */
+/* GLASS UTILITY */
 .glass{
   background:var(--glass);
+  /* Safari Support */
+  -webkit-backdrop-filter:blur(20px);
   backdrop-filter:blur(20px);
   border-radius:22px;
   padding:40px;
@@ -148,7 +157,13 @@ h2{color:var(--accent);margin-bottom:40px}
   align-items:center;
 }
 .about p{color:var(--muted);line-height:1.8}
-.about img{width:100%;border-radius:20px;filter:grayscale(1)}
+.about img{
+    width:100%;
+    border-radius:20px;
+    filter:grayscale(1);
+    transition: 0.5s;
+}
+.about img:hover { filter: grayscale(0); }
 
 /* SKILLS – FLOATING iOS STYLE */
 .skills{
@@ -161,14 +176,18 @@ h2{color:var(--accent);margin-bottom:40px}
   padding:28px;
   border-radius:22px;
   background:var(--glass);
+  -webkit-backdrop-filter:blur(18px);
   backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.08);
   animation:float 6s ease-in-out infinite;
   transition:.4s;
-  .skill-card{
-  filter: blur(8px);
 }
+
+/* Fixed invalid nested CSS syntax */
+.skill-card.blurred {
+    filter: blur(5px);
 }
+
 .skill-card:nth-child(2){animation-duration:7.5s}
 .skill-card:nth-child(3){animation-duration:6.5s}
 
@@ -216,25 +235,38 @@ h2{color:var(--accent);margin-bottom:40px}
   padding:30px;
   border-radius:22px;
   background:var(--glass);
+  -webkit-backdrop-filter:blur(18px);
   backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.08);
   transition:.4s;
+  cursor: pointer;
 }
 .project:hover{
   transform:translateY(-10px);
   box-shadow:0 30px 60px rgba(0,0,0,.6);
 }
-.project p{color:var(--muted);font-size:14px}
+.project h4 { margin-bottom: 10px; }
+.project p{color:var(--muted);font-size:14px; line-height: 1.6;}
 
 footer{
   text-align:center;
   color:var(--muted);
   padding:40px;
+  margin-top: 50px;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 
+/* MOBILE OPTIMIZATION */
 @media(max-width:900px){
+  header { padding: 20px; }
   .about,.skills,.projects{grid-template-columns:1fr}
   .hero h1{font-size:38px}
+  .hero { padding: 0 20px; text-align: center; justify-content: center; }
+  section { padding: 80px 20px; }
+  .skill-card { animation: none; } /* Disable float on mobile to save battery */
+  
+  /* Hide nav on very small screens or make it scrollable */
+  nav a { margin-left: 15px; font-size: 12px; }
 }
 </style>
 </head>
@@ -246,13 +278,24 @@ footer{
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
-    <a href="#Contact">Contact</a>
+    <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section class="hero" id="home">
   <div class="hero-content">
     <h1>Lakshay Kumar</h1>
+    
+    <div class="morph">
+        <span class="active">Data Scientist</span>
+        <span>AI Engineer</span>
+        <span>UI Designer</span>
+    </div>
+
+    <div class="buttons">
+        <a href="#projects" class="btn primary magnetic">View Work</a>
+        <a href="#contact" class="btn magnetic">Contact Me</a>
+    </div>
   </div>
 </section>
 
@@ -263,7 +306,7 @@ footer{
       AI & Data Science student focused on intelligent systems,
       real-world ML projects, and Apple-inspired premium UI.
     </p>
-    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
+    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12" alt="Workspace">
   </div>
 </section>
 
@@ -303,36 +346,41 @@ footer{
   </div>
 </section>
 
-<footer>© 2026 Your Name</footer>
+<section id="contact">
+    <h2>CONTACT</h2>
+    <div class="glass" style="text-align: center;">
+        <p>Email: lakshay@example.com</p>
+    </div>
+</section>
+
+<footer>© 2026 Lakshay Kumar</footer>
 
 <script>
-/* MOUSE GLOW */
-let mouseX = window.innerWidth / 2;
-let mouseY = window.innerHeight / 2;
-let glowX = mouseX;
-let glowY = mouseY;
+/* MOUSE GLOW - Desktop Only Check */
+const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-// how much lag (smaller = more lag)
-const lagSpeed = 0.15;
+if (!isTouchDevice) {
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let glowX = mouseX;
+    let glowY = mouseY;
 
-window.addEventListener("mousemove", e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-});
+    const lagSpeed = 0.15;
 
-function animateGlow() {
-  // Smooth interpolation (lerp)
-  glowX += (mouseX - glowX) * lagSpeed;
-  glowY += (mouseY - glowY) * lagSpeed;
+    window.addEventListener("mousemove", e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
 
-  document.body.style.setProperty("--x", glowX + "px");
-  document.body.style.setProperty("--y", glowY + "px");
-
-  requestAnimationFrame(animateGlow);
+    function animateGlow() {
+      glowX += (mouseX - glowX) * lagSpeed;
+      glowY += (mouseY - glowY) * lagSpeed;
+      document.body.style.setProperty("--x", glowX + "px");
+      document.body.style.setProperty("--y", glowY + "px");
+      requestAnimationFrame(animateGlow);
+    }
+    animateGlow();
 }
-
-animateGlow();
-
 
 /* SCROLL + SKILLS ANIMATION */
 const obs = new IntersectionObserver(entries => {
@@ -341,32 +389,30 @@ const obs = new IntersectionObserver(entries => {
       e.target.classList.add('show');
       e.target.querySelectorAll('.skill-card').forEach(card => {
 
-        // Prevent re-running animation
         if (card.dataset.animated) return;
         card.dataset.animated = "true";
 
         const bar = card.querySelector('.bar span');
         const percent = card.querySelector('.percent');
-
-        const target = parseInt(bar.dataset.width);
+        const target = parseInt(percent.dataset.target); // Fixed: read from percent data-target
+        
         const maxBlur = 8;
-
-        let current = 0;
-        const duration = 1400; // ms
+        const duration = 1400; 
         const start = performance.now();
 
         function animate(now) {
           const elapsed = now - start;
           const progress = Math.min(elapsed / duration, 1);
 
-          // Linear percentage growth
           current = Math.round(progress * target);
-
-          // Progressive deblur
-          const blurValue = maxBlur * (1 - progress,1.7);
+          
+          // Fixed Logic: Simple inverse blur
+          const blurValue = maxBlur * (1 - progress);
 
           percent.textContent = current + "%";
           bar.style.width = current + "%";
+          
+          // Apply blur
           card.style.filter = `blur(${blurValue}px)`;
 
           if (progress < 1) {
@@ -375,50 +421,44 @@ const obs = new IntersectionObserver(entries => {
             card.style.filter = "blur(0px)";
           }
         }
-
         requestAnimationFrame(animate);
       });
     }
   });
-}, { threshold: 0.2 });
+}, { threshold: 0.1 }); // Lowered threshold for mobile
 
 document.querySelectorAll('section').forEach(s => obs.observe(s));
 
 /* TEXT MORPH */
-let i=0;
-const words=document.querySelectorAll('.morph span');
-setInterval(()=>{
-  words[i].classList.remove('active');
-  i=(i+1)%words.length;
-  words[i].classList.add('active');
-},2500);
+const words = document.querySelectorAll('.morph span');
+if(words.length > 0) {
+    let i = 0;
+    setInterval(() => {
+      words[i].classList.remove('active');
+      i = (i + 1) % words.length;
+      words[i].classList.add('active');
+    }, 2500);
+}
 
-/* MAGNETIC BUTTONS */
-document.querySelectorAll('.magnetic').forEach(btn=>{
-  btn.addEventListener('mousemove',e=>{
-    const r=btn.getBoundingClientRect();
-    btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`
-  });
-  btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0)');
-  
-});
-/* SMOOTH SCROLL FOR LINKS & BUTTONS */
-document.querySelectorAll('a[href^="#"], button[data-scroll]').forEach(el=>{
-  el.addEventListener('click',e=>{
-    e.preventDefault();
-
-    const targetSelector =
-      el.tagName === "BUTTON"
-        ? el.getAttribute("data-scroll")
-        : el.getAttribute("href");
-
-    const target = document.querySelector(targetSelector);
-    if(!target) return;
-
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: "start"
+/* MAGNETIC BUTTONS (Desktop Only) */
+if (!isTouchDevice) {
+    document.querySelectorAll('.magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', e => {
+        const r = btn.getBoundingClientRect();
+        btn.style.transform = `translate(${(e.clientX - r.left - r.width / 2) / 8}px, ${(e.clientY - r.top - r.height / 2) / 8}px)`;
+      });
+      btn.addEventListener('mouseleave', () => btn.style.transform = 'translate(0)');
     });
+}
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(el => {
+  el.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(el.getAttribute("href"));
+    if (target) {
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
   });
 });
 </script>
