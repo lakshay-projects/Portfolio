@@ -28,7 +28,62 @@ html,body{
   scroll-behavior:smooth;
   -webkit-overflow-scrolling:touch;
 }
+  .hero-center-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  text-align:center;
+  z-index:3;
+}
 
+.hero-center-text h2{
+  font-size:28px;
+  font-weight:600;
+  margin-bottom:10px;
+}
+
+.hero-center-text p{
+  font-size:16px;
+  color:var(--muted);
+}
+  .hero-center-text{
+  animation:fadeUp 1.2s ease forwards;
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translate(-50%, -40%);
+  }
+  to{
+    opacity:1;
+    transform:translate(-50%, -50%);
+  }
+}
+.hero-center-text{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  text-align:center;
+  z-index:3;
+  transition: opacity .3s ease, transform .3s ease;
+}
+  .gradient-text{
+  background: linear-gradient(90deg, #4fa3ff, #7cf6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.hero-center-text h2{
+  letter-spacing:0.5px;
+}
+
+.hero-center-text p{
+  letter-spacing:0.3px;
+}
+
+  
 /* MOUSE GLOW */
 body::before{
   content:"";
@@ -250,11 +305,13 @@ footer{
     <a href="contact">Contact</a>
   </nav>
 </header>
+  
+<div class="hero-center-text">
+  <h2><span class="gradient-text">AI ENGINEER</span> IN PROGRESS.</h2>
+  <p>BUILDING WITH <span class="gradient-text">DATA</span> AND <span class="gradient-text">INTELLIGENCE</span>.</p>
+</div>
 
-<section class="hero">
-  <div class="hero-content">
-    <h1>LakshayKumar</h1>
-  </div>
+  
 </section>
 
 <section id="about">
@@ -376,6 +433,19 @@ if(!('ontouchstart' in window)){
     btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0)');
   });
 }
+  const heroText = document.querySelector('.hero-center-text');
+
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const fadePoint = window.innerHeight * 0.4;
+
+  const opacity = Math.max(0, 1 - scrollY / fadePoint);
+  const translateY = -50 - scrollY * 0.05;
+
+  heroText.style.opacity = opacity;
+  heroText.style.transform = `translate(-50%, ${translateY}%)`;
+});
+  
 </script>
 </body>
 </html>
