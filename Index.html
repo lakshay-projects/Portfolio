@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Your Name – Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#0b0e14;
+  --glass:rgba(255,255,255,.06);
+  --text:#fff;
+  --muted:#9aa4b2;
+  --accent:#4fa3ff;
+}
+
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* MOUSE GLOW */
+body::before{
+  content:"";
+  position:fixed;
+  width:100px;
+  height:100px;
+  background:radial-gradient(circle, rgba(83, 148, 217, 0.12), transparent 65%);
+  pointer-events:none;
+  transform:translate(-50%,-50%);
+  left:var(--x);
+  top:var(--y);
+  z-index:1;
+}
+
+/* NAV */
+header{
+  position:fixed;
+  top:0;width:100%;
+  padding:20px 60px;
+  display:flex;
+  justify-content:space-between;
+  backdrop-filter:blur(20px);
+  background:rgba(0,0,0,.45);
+  z-index:10;
+}
+nav a{
+  margin-left:30px;
+  color:var(--muted);
+  font-size:14px;
+  text-decoration: none;   /* ← ADD THIS */
+}
+
+
+/* HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  align-items:center;
+  padding:0 10%;
+  position:relative;
+}
+.hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.75);
+}
+.hero-content{position:relative;z-index:2;max-width:520px}
+.hero h1{font-size:52px;font-weight:700}
+
+/* TEXT MORPH */
+.morph{
+  height:28px;
+  margin-top:10px;
+  position:relative;
+  overflow:hidden;
+}
+.morph span{
+  position:absolute;
+  opacity:0;
+  filter:blur(8px);
+  transition:.6s;
+}
+.morph span.active{
+  opacity:1;
+  filter:blur(0);
+}
+
+/* BUTTONS */
+.buttons{margin-top:30px}
+.btn{
+  padding:30px 30px;
+  border-radius:30px;
+  border:1px solid var(--accent);
+  margin-right:15px;
+  background:none;
+  color:white;
+  transition:.5s;
+}
+.btn.primary{background:var(--accent);color:black}
+.btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(79,163,255,.35);
+    scroll-behavior:smooth;
+    header nav a{
+  text-decoration: none !important;
+}
+header nav a,
+header nav a:hover,
+header nav a:focus,
+header nav a:active,
+header nav a:visited {
+  text-decoration: none !important;
+}
+}
+
+/* SECTIONS */
+section{
+  padding:100px 10%;
+  opacity:0;
+  transform:translateY(60px);
+  transition:1s;
+  position:relative;
+  z-index:2;
+}
+section.show{opacity:1;transform:none}
+h2{color:var(--accent);margin-bottom:40px}
+
+/* GLASS */
+.glass{
+  background:var(--glass);
+  backdrop-filter:blur(20px);
+  border-radius:22px;
+  padding:40px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+/* ABOUT */
+.about{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:center;
+}
+.about p{color:var(--muted);line-height:1.8}
+.about img{width:100%;border-radius:20px;filter:grayscale(1)}
+
+/* SKILLS – FLOATING iOS STYLE */
+.skills{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+
+.skill-card{
+  padding:28px;
+  border-radius:22px;
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);
+  animation:float 6s ease-in-out infinite;
+  transition:.4s;
+  .skill-card{
+  filter: blur(8px);
+}
+}
+.skill-card:nth-child(2){animation-duration:7.5s}
+.skill-card:nth-child(3){animation-duration:6.5s}
+
+@keyframes float{
+  0%{transform:translateY(0)}
+  50%{transform:translateY(-12px)}
+  100%{transform:translateY(0)}
+}
+
+.skill-card:hover{
+  transform:translateY(-14px) scale(1.02);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+.skill-header{
+  display:flex;
+  justify-content:space-between;
+  font-size:14px;
+  margin-bottom:12px;
+}
+
+.percent{color:var(--muted)}
+
+.bar{
+  height:6px;
+  background:#1f2636;
+  border-radius:6px;
+  overflow:hidden;
+}
+.bar span{
+  height:100%;
+  width:0;
+  display:block;
+  background:var(--accent);
+  transition:1.2s;
+}
+
+/* PROJECTS */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:30px;
+}
+.project{
+  padding:30px;
+  border-radius:22px;
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);
+  transition:.4s;
+}
+.project:hover{
+  transform:translateY(-10px);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+.project p{color:var(--muted);font-size:14px}
+
+footer{
+  text-align:center;
+  color:var(--muted);
+  padding:40px;
+}
+
+@media(max-width:900px){
+  .about,.skills,.projects{grid-template-columns:1fr}
+  .hero h1{font-size:38px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h3>LakshayKumar</h3>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#Contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <h1>Lakshay Kumar</h1>
+  </div>
+</section>
+
+<section id="about">
+  <h2>ABOUT</h2>
+  <div class="about glass">
+    <p>
+      AI & Data Science student focused on intelligent systems,
+      real-world ML projects, and Apple-inspired premium UI.
+    </p>
+    <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12">
+  </div>
+</section>
+
+<section id="skills">
+  <h2>SKILLS</h2>
+  <div class="skills">
+    <div class="skill-card">
+      <div class="skill-header"><span>Python</span><span class="percent" data-target="90">0%</span></div>
+      <div class="bar"><span data-width="90%"></span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span>Machine Learning</span><span class="percent" data-target="85">0%</span></div>
+      <div class="bar"><span data-width="85%"></span></div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-header"><span>Data Analysis</span><span class="percent" data-target="80">0%</span></div>
+      <div class="bar"><span data-width="80%"></span></div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <h2>AI PROJECTS</h2>
+  <div class="projects">
+    <div class="project">
+      <h4>AI Resume Analyzer</h4>
+      <p>NLP-based resume scoring system using ML.</p>
+    </div>
+    <div class="project">
+      <h4>Image Processing Toolkit</h4>
+      <p>4-adjacency & pixel analysis using DSA + OpenCV.</p>
+    </div>
+    <div class="project">
+      <h4>Sales Forecasting</h4>
+      <p>Time-series prediction using regression models.</p>
+    </div>
+  </div>
+</section>
+
+<footer>© 2026 Your Name</footer>
+
+<script>
+/* MOUSE GLOW */
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+let glowX = mouseX;
+let glowY = mouseY;
+
+// how much lag (smaller = more lag)
+const lagSpeed = 0.15;
+
+window.addEventListener("mousemove", e => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateGlow() {
+  // Smooth interpolation (lerp)
+  glowX += (mouseX - glowX) * lagSpeed;
+  glowY += (mouseY - glowY) * lagSpeed;
+
+  document.body.style.setProperty("--x", glowX + "px");
+  document.body.style.setProperty("--y", glowY + "px");
+
+  requestAnimationFrame(animateGlow);
+}
+
+animateGlow();
+
+
+/* SCROLL + SKILLS ANIMATION */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('show');
+      e.target.querySelectorAll('.skill-card').forEach(card => {
+
+        // Prevent re-running animation
+        if (card.dataset.animated) return;
+        card.dataset.animated = "true";
+
+        const bar = card.querySelector('.bar span');
+        const percent = card.querySelector('.percent');
+
+        const target = parseInt(bar.dataset.width);
+        const maxBlur = 8;
+
+        let current = 0;
+        const duration = 1400; // ms
+        const start = performance.now();
+
+        function animate(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+
+          // Linear percentage growth
+          current = Math.round(progress * target);
+
+          // Progressive deblur
+          const blurValue = maxBlur * (1 - progress,1.7);
+
+          percent.textContent = current + "%";
+          bar.style.width = current + "%";
+          card.style.filter = `blur(${blurValue}px)`;
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          } else {
+            card.style.filter = "blur(0px)";
+          }
+        }
+
+        requestAnimationFrame(animate);
+      });
+    }
+  });
+}, { threshold: 0.2 });
+
+document.querySelectorAll('section').forEach(s => obs.observe(s));
+
+/* TEXT MORPH */
+let i=0;
+const words=document.querySelectorAll('.morph span');
+setInterval(()=>{
+  words[i].classList.remove('active');
+  i=(i+1)%words.length;
+  words[i].classList.add('active');
+},2500);
+
+/* MAGNETIC BUTTONS */
+document.querySelectorAll('.magnetic').forEach(btn=>{
+  btn.addEventListener('mousemove',e=>{
+    const r=btn.getBoundingClientRect();
+    btn.style.transform=`translate(${(e.clientX-r.left-r.width/2)/8}px,${(e.clientY-r.top-r.height/2)/8}px)`
+  });
+  btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0)');
+  
+});
+/* SMOOTH SCROLL FOR LINKS & BUTTONS */
+document.querySelectorAll('a[href^="#"], button[data-scroll]').forEach(el=>{
+  el.addEventListener('click',e=>{
+    e.preventDefault();
+
+    const targetSelector =
+      el.tagName === "BUTTON"
+        ? el.getAttribute("data-scroll")
+        : el.getAttribute("href");
+
+    const target = document.querySelector(targetSelector);
+    if(!target) return;
+
+    target.scrollIntoView({
+      behavior: "smooth",
+      block: "start"
+    });
+  });
+});
+</script>
+</body>
+</html>
