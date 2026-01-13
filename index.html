@@ -7,9 +7,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-<title>Portfolio-Lakshay</title>
+<title>LakshayKumar</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -28,103 +28,13 @@ html,body{
   scroll-behavior:smooth;
   -webkit-overflow-scrolling:touch;
 }
-  .hero-center-text{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  text-align:center;
-  z-index:3;
-}
 
-.hero-center-text h2{
-  font-size:28px;
-  font-weight:600;
-  margin-bottom:10px;
-}
-
-.hero-center-text p{
-  font-size:40px;
-  color:var(--muted);
-}
-  .hero-center-text{
-  animation:fadeUp 1.2s ease forwards;
-}
-.hero-center-text{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  text-align:center;
-  z-index:3;
-}
-
-/* Initial blur state */
-.reveal{
-  opacity:0;
-  filter:blur(12px);
-  animation:blurReveal 1.6s ease forwards;
-}
-
-/* Apple-style reveal */
-@keyframes blurReveal{
-  0%{
-    opacity:0;
-    filter:blur(6px);
-    transform:translate(-50%, -45%);
-  }
-  100%{
-    opacity:1;
-    filter:blur(0);
-    transform:translate(-50%, -50%);
-  }
-}
-.reveal{
-  animation-delay:0.2s;
-}
-.reveal{
-  will-change: filter, opacity, transform;
-}
-
-@keyframes fadeUp{
-  from{
-    opacity:0;
-    transform:translate(-50%, -40%);
-  }
-  to{
-    opacity:1;
-    transform:translate(-50%, -50%);
-  }
-}
-.hero-center-text{
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%, -50%);
-  text-align:center;
-  z-index:3;
-  transition: opacity .3s ease, transform .3s ease;
-}
-  .gradient-text{
-  background: linear-gradient(90deg, #4fa3ff, #7cf6ff);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.hero-center-text h2{
-  letter-spacing:0.2px;
-}
-
-.hero-center-text p{
-  letter-spacing:0.2px;
-}
-
-  
 /* MOUSE GLOW */
 body::before{
   content:"";
   position:fixed;
-  width:120px;
-  height:120px;
+  width:100px;
+  height:100px;
   background:radial-gradient(circle, rgba(79,163,255,.12), transparent 65%);
   pointer-events:none;
   transform:translate(-50%,-50%);
@@ -141,10 +51,23 @@ header{
   padding:20px 60px;
   display:flex;
   justify-content:space-between;
+  align-items:center;
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   background:rgba(0,0,0,.45);
   z-index:10;
+}
+
+header h3{
+  font-weight:700;
+  letter-spacing:0.5px;
+}
+
+/* NAV LINKS */
+header nav{
+  display:flex;
+  align-items:center;
+  gap:22px;
 }
 
 header nav a,
@@ -152,177 +75,124 @@ header nav a:hover,
 header nav a:focus,
 header nav a:active,
 header nav a:visited{
-  margin-left:30px;
   color:var(--muted);
   font-size:14px;
   text-decoration:none !important;
+  position:relative;
+  padding:8px 10px;
+  border-radius:14px;
+  transition:.25s;
 }
 
-header nav a:hover{color:var(--accent)}
+/* Active link highlight (scroll spy) */
+header nav a.active{
+  color:white;
+  background:rgba(79,163,255,.14);
+  border:1px solid rgba(79,163,255,.35);
+}
+
+header nav a:hover{
+  color:var(--accent);
+}
+
+/* Contact button */
+.nav-btn{
+  padding:10px 18px;
+  border-radius:999px;
+  background:var(--accent);
+  color:black !important;
+  font-weight:600;
+  border:1px solid rgba(79,163,255,.55);
+}
+
+.nav-btn:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 25px rgba(79,163,255,.3);
+}
 
 /* HERO */
 .hero{
   height:100vh;
   display:flex;
   align-items:center;
+  justify-content:center;
   padding:0 10%;
   position:relative;
 }
+
 .hero::after{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.75);
+  background:linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.45),
+    rgba(0,0,0,0.65)
+  );
+.hero{
+  filter: saturate(1.25) contrast(1.1);
 }
-.hero-content{
+}
+
+
+/* HERO CENTER TEXT */
+.hero-center-text{
   position:relative;
-  z-index:2;
-  max-width:520px;
-}
-.hero h1{font-size:52px;font-weight:700}
-/* HERO TEXT TYPOGRAPHY CONTROL */
-
-.hero-title{
-  margin-bottom: 18px;
-  line-height: 1.1;
+  z-index:3;
+  text-align:center;
+  transition: opacity .25s ease, transform .25s ease;
 }
 
-/* MAIN TITLE */
-.hero-main{
-  font-size: 48px;      
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: var(--accent);
+/* REFERENCE STYLE HERO TEXT */
+.hero-line{
+  text-align:center;
+  line-height:1.05;
 }
 
-/* SUB TITLE */
-.hero-sub{
-  font-size: 26px;    
-  font-weight: 500;
-  color: #b0b6c3;
+.hero-faded{
+  font-size:72px;
+  font-weight:800;
+  color:rgba(255,255,255,0.25);
+  margin-bottom:18px;
 }
 
-/* TAGLINE */
-.hero-tagline{
-  font-size: 8px;
-  color: var(--muted);
-  letter-spacing: 1px;
+.hero-bold{
+  font-size:74px;
+  font-weight:800;
+  color:#ffffff;
 }
 
-/* KEYWORDS */
-.hero-key{
-  font-weight: 600;
-  letter-spacing: 1.2px;
+/* Gradient Highlight (KEEP SAME) */
+.gradient-text{
+  background: linear-gradient(90deg, #4fa3ff, #7cf6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* DATA */
-.hero-key.data{
-  font-size: 30px;    
-  color: #4fa3ff;
+/* Buttons */
+.buttons{
+  margin-top:35px;
+  display:flex;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
 }
 
-/* INTELLIGENCE */
-.hero-key.intelligence{
-  font-size: 32px;      
-  color: #7cf6ff;
-}
-@media (max-width: 768px){
-  .hero-main{ font-size: 34px; }
-  .hero-sub{ font-size: 20px; }
-  .hero-tagline{ font-size: 15px; }
-  .hero-key.data{ font-size: 16px; }
-  .hero-key.intelligence{ font-size: 17px; }
-}
-.hero-main{
-  text-transform: uppercase;
-}
-
-.hero-sub{
-  opacity: 0.9;
-}
-/* Initial hidden state */
-.animate-main,
-.animate-sub{
-  display:inline-block;
-  opacity:0;
-}
-
-/* AI ENGINEER – appears first */
-.animate-main{
-  animation: mainReveal 1.2s ease forwards;
-}
-.animate-main{
-  letter-spacing: 1.5px;
-}
-
-
-/* IN PROGRESS – delayed & softer */
-.animate-sub{
-  animation: subReveal 1.2s ease forwards;
-  animation-delay: 0.4s;
-}
-
-/* Keyframes */
-@keyframes mainReveal{
-  from{
-    opacity:0;
-    transform:translateY(12px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-@media (max-width:768px){
-  .animate-main,
-  .animate-sub{
-    animation-duration: 1s;
-  }
-}
-
-
-@keyframes subReveal{
-  from{
-    opacity:0;
-    transform:translateY(6px);
-  }
-  to{
-    opacity:1;
-    transform:translateY(0);
-  }
-}
-
-
-/* TEXT MORPH */
-.morph{
-  height:28px;
-  margin-top:10px;
-  position:relative;
-  overflow:hidden;
-}
-.morph span{
-  position:absolute;
-  opacity:0;
-  filter:blur(8px);
-  transition:.6s;
-}
-.morph span.active{
-  opacity:1;
-  filter:blur(0);
-}
-
-/* BUTTONS */
-.buttons{margin-top:30px}
 .btn{
   padding:12px 26px;
   border-radius:30px;
   border:1px solid var(--accent);
-  margin-right:15px;
   background:none;
   color:white;
   transition:.3s;
+  cursor:pointer;
 }
-.btn.primary{background:var(--accent);color:black}
+
+.btn.primary{
+  background:var(--accent);
+  color:black;
+}
+
 .btn:hover{
   transform:translateY(-3px);
   box-shadow:0 12px 30px rgba(79,163,255,.35);
@@ -337,8 +207,17 @@ section{
   position:relative;
   z-index:2;
 }
-section.show{opacity:1;transform:none}
-h2{color:var(--accent);margin-bottom:40px}
+
+section.show{
+  opacity:1;
+  transform:none;
+}
+
+h2{
+  color:var(--accent);
+  margin-bottom:40px;
+  letter-spacing:1px;
+}
 
 /* GLASS */
 .glass{
@@ -357,11 +236,15 @@ h2{color:var(--accent);margin-bottom:40px}
   gap:40px;
   align-items:center;
 }
-.about p{color:var(--muted);line-height:1.8}
+
+.about p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
 .about img{
   width:100%;
   border-radius:20px;
-  filter:grayscale(1);
 }
 
 /* SKILLS */
@@ -394,7 +277,10 @@ h2{color:var(--accent);margin-bottom:40px}
   font-size:14px;
   margin-bottom:12px;
 }
-.percent{color:var(--muted)}
+
+.percent{
+  color:var(--muted);
+}
 
 .bar{
   height:6px;
@@ -402,6 +288,7 @@ h2{color:var(--accent);margin-bottom:40px}
   border-radius:6px;
   overflow:hidden;
 }
+
 .bar span{
   height:100%;
   width:0;
@@ -415,6 +302,7 @@ h2{color:var(--accent);margin-bottom:40px}
   grid-template-columns:repeat(3,1fr);
   gap:30px;
 }
+
 .project{
   padding:30px;
   border-radius:22px;
@@ -422,22 +310,158 @@ h2{color:var(--accent);margin-bottom:40px}
   backdrop-filter:blur(18px);
   -webkit-backdrop-filter:blur(18px);
   border:1px solid rgba(255,255,255,.08);
+  transition:.35s;
+  cursor:pointer;
 }
-.project p{color:var(--muted);font-size:14px}
 
+.project:hover{
+  transform:translateY(-10px);
+  box-shadow:0 30px 60px rgba(0,0,0,.6);
+}
+
+.project p{
+  color:var(--muted);
+  font-size:14px;
+  margin-top:8px;
+}
+
+/* CONTACT */
+.contact-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:30px;
+}
+
+.contact-card{
+  padding:30px;
+  border-radius:22px;
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.contact-card p{
+  color:var(--muted);
+  margin-top:10px;
+  line-height:1.7;
+}
+
+.contact-form{
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+  margin-top:18px;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  padding:14px 16px;
+  border-radius:16px;
+  border:1px solid rgba(255,255,255,.12);
+  outline:none;
+  background:rgba(0,0,0,.35);
+  color:white;
+}
+
+.contact-form textarea{
+  min-height:120px;
+  resize:none;
+}
+
+.contact-form button{
+  width:max-content;
+}
+
+/* FOOTER */
 footer{
   text-align:center;
   color:var(--muted);
   padding:40px;
 }
 
+/* PROJECT MODAL */
+.modal{
+  position:fixed;
+  inset:0;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.6);
+  z-index:999;
+  padding:20px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  width:min(720px, 95vw);
+  border-radius:26px;
+  padding:28px;
+  background:rgba(15,18,26,.75);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 40px 120px rgba(0,0,0,.65);
+  position:relative;
+  animation:modalIn .25s ease forwards;
+}
+
+@keyframes modalIn{
+  from{opacity:0;transform:translateY(20px) scale(.98)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.modal-close{
+  position:absolute;
+  top:14px;
+  right:14px;
+  width:38px;
+  height:38px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.35);
+  color:white;
+  cursor:pointer;
+}
+
+.modal-card h3{
+  margin-bottom:10px;
+}
+
+.modal-card p{
+  color:var(--muted);
+  line-height:1.8;
+}
+
 /* MOBILE OPTIMIZATION */
 @media(max-width:900px){
-  .about,.skills,.projects{grid-template-columns:1fr}
-  .hero h1{font-size:38px}
+  header{padding:16px 20px}
+  header nav{gap:10px}
+
+  .hero-faded{font-size:40px;}
+  .hero-bold{font-size:42px;}
+
+  .about,.skills,.projects,.contact-grid{grid-template-columns:1fr}
   body::before{width:90px;height:90px}
   .skill-card{filter:blur(6px)}
 }
+/* Hide boundaries/cards initially */
+.reveal-card{
+  opacity:0;
+  transform:translateY(30px) scale(0.98);
+  transition:opacity .8s ease, transform .8s ease;
+}
+
+/* Show when active */
+.reveal-card.show-card{
+  opacity:1;
+  transform:translateY(0) scale(1);
+}
+
 </style>
 </head>
 
@@ -446,40 +470,40 @@ footer{
 <header>
   <h3>LakshayKumar</h3>
   <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="contact">Contact</a>
+    <a href="#about" class="nav-link">About</a>
+    <a href="#skills" class="nav-link">Skills</a>
+    <a href="#projects" class="nav-link">Projects</a>
+    <a href="#contact" class="nav-link nav-btn">Contact</a>
   </nav>
 </header>
-  <section class="hero">
 
-<div class="hero-center-text reveal">
-  <h2 class="hero-title">
-    <span class="hero-main">AI ENGINEER</span><br>
-    <span class="hero-sub">IN PROGRESS.</span>
-  </h2>
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-center-text" id="heroText">
+    <div class="hero-line hero-faded">AI ENGINEER IN PROGRESS</div>
 
-  <p class="hero-tagline">
-    BUILDING WITH
-    <span class="hero-key data">DATA</span> &
-    <span class="hero-key intelligence">INTELLIGENCE</span>.
-  </p>
-</div>
+    <div class="hero-line hero-bold">
+      BUILDING WITH <span class="gradient-text">DATA</span> &
+    </div>
 
-</section>  
+    <div class="hero-line hero-bold">
+      <span class="gradient-text">INTELLIGENCE</span>
+
 </section>
 
+<!-- ABOUT -->
 <section id="about">
   <h2>ABOUT</h2>
-  <div class="about glass">
+  <div class="about glass reveal-card">
     <p>
       AI & Data Science student focused on intelligent systems,
       real-world ML projects, and Apple-inspired premium UI.
     </p>
+    <img src="file:///Users/apple/Documents/Downloads/IMG_2382.JPG" alt="profile">
   </div>
 </section>
 
+<!-- SKILLS -->
 <section id="skills">
   <h2>SKILLS</h2>
   <div class="skills">
@@ -487,10 +511,12 @@ footer{
       <div class="skill-header"><span>Python</span><span class="percent">0%</span></div>
       <div class="bar"><span data-width="90"></span></div>
     </div>
-    <div class="skill-card">
+
+    <div class="skill-card reveal-card">
       <div class="skill-header"><span>Machine Learning</span><span class="percent">0%</span></div>
       <div class="bar"><span data-width="85"></span></div>
     </div>
+
     <div class="skill-card">
       <div class="skill-header"><span>Data Analysis</span><span class="percent">0%</span></div>
       <div class="bar"><span data-width="80"></span></div>
@@ -498,65 +524,129 @@ footer{
   </div>
 </section>
 
+<!-- PROJECTS -->
 <section id="projects">
   <h2>AI PROJECTS</h2>
   <div class="projects">
-    <div class="project"><h4>AI Resume Analyzer</h4><p>NLP based resume scoring system.</p></div>
-    <div class="project"><h4>Image Processing Toolkit</h4><p>Pixel adjacency & OpenCV tools.</p></div>
-    <div class="project"><h4>Sales Forecasting</h4><p>Time-series ML prediction model.</p></div>
+    <div class="project" data-title="AI Resume Analyzer"
+         data-desc="An NLP-based resume scoring system that extracts key skills, ranks resumes, and generates actionable feedback. Built with Python, NLP techniques, and ML scoring logic.">
+      <h4>AI Resume Analyzer</h4>
+      <p>NLP based resume scoring system.</p>
+    </div>
+
+    <div class="project reveal-card" data-title="Image Processing Toolkit"
+         data-desc="A mini toolkit for pixel adjacency, 4-connectivity analysis, and basic image operations. Includes optimized data structures and fast computation logic.">
+      <h4>Image Processing Toolkit</h4>
+      <p>Pixel adjacency & OpenCV tools.</p>
+    </div>
+
+    <div class="project" data-title="Sales Forecasting"
+         data-desc="A time-series forecasting project to predict future sales trends using regression and ML models. Focused on accuracy, clean pipelines, and visualization.">
+      <h4>Sales Forecasting</h4>
+      <p>Time-series ML prediction model.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <h2>CONTACT</h2>
+
+  <div class="contact-grid">
+    <div class="contact-card reveal-card">
+      <h3>Let’s connect</h3>
+      <p>
+        If you want to collaborate on AI/ML projects, build something impactful,
+        or discuss opportunities — feel free to reach out.
+      </p>
+
+      <p style="margin-top:16px;">
+        📧 Email: <span class="gradient-text">lakshay@email.com</span><br>
+        💼 LinkedIn: <span class="gradient-text">linkedin.com/in/lakshay</span><br>
+        🧑‍💻 GitHub: <span class="gradient-text">github.com/lakshay</span>
+      </p>
+    </div>
+
+    <div class="contact-card">
+      <h3>Send a message</h3>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent! (Demo)');">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" required></textarea>
+        <button class="btn primary magnetic" type="submit">Send</button>
+      </form>
+    </div>
   </div>
 </section>
 
 <footer>© 2026 LAKSHAYKUMAR</footer>
+
+<!-- PROJECT MODAL -->
+<div class="modal" id="projectModal">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose">✕</button>
+    <h3 id="modalTitle">Project Title</h3>
+    <p id="modalDesc">Project Description</p>
+  </div>
+</div>
 
 <script>
 /* SMOOTH SCROLL */
 document.querySelectorAll('a[href^="#"],button[data-scroll]').forEach(el=>{
   el.addEventListener('click',e=>{
     e.preventDefault();
-    document.querySelector(el.dataset.scroll || el.getAttribute("href"))
-      .scrollIntoView({behavior:"smooth"});
+    const target = document.querySelector(el.dataset.scroll || el.getAttribute("href"));
+    if(!target) return;
+    target.scrollIntoView({behavior:"smooth", block:"start"});
   });
 });
 
-/* TEXT MORPH */
-let m=0;
-const words=document.querySelectorAll('.morph span');
-setInterval(()=>{
-  words[m].classList.remove('active');
-  m=(m+1)%words.length;
-  words[m].classList.add('active');
-},2500);
+/* HERO TEXT SCROLL FADE OUT (APPLE STYLE) */
+const heroText = document.getElementById("heroText");
+window.addEventListener("scroll",()=>{
+  const y = window.scrollY;
+  const fadePoint = window.innerHeight * 0.45;
+  const opacity = Math.max(0, 1 - y / fadePoint);
+  const translate = Math.min(40, y * 0.08);
 
-/* SKILLS ANIMATION + PROGRESSIVE DEBLUR */
+  heroText.style.opacity = opacity;
+  heroText.style.transform = `translateY(-${translate}px)`;
+});
+
+/* SCROLL ANIMATION + SKILLS */
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(entry=>{
     if(entry.isIntersecting){
-      entry.target.querySelectorAll('.skill-card').forEach(card=>{
-        if(card.dataset.done) return;
-        card.dataset.done=true;
-
-        const bar=card.querySelector('.bar span');
-        const percent=card.querySelector('.percent');
-        const target=parseInt(bar.dataset.width);
-        const maxBlur=8;
-        const duration=2500;
-        const start=performance.now();
-
-        function animate(t){
-          const progress=Math.min((t-start)/duration,1);
-          const value=Math.round(progress*target);
-
-          percent.textContent=value+"%";
-          bar.style.width=value+"%";
-          card.style.filter=`blur(${maxBlur*(1-progress)}px)`;
-
-          if(progress<1) requestAnimationFrame(animate);
-          else card.style.filter="blur(0px)";
-        }
-        requestAnimationFrame(animate);
-      });
       entry.target.classList.add("show");
+
+      if(entry.target.id==="skills"){
+        entry.target.querySelectorAll('.skill-card').forEach(card=>{
+          if(card.dataset.done) return;
+          card.dataset.done=true;
+
+          const bar=card.querySelector('.bar span');
+          const percent=card.querySelector('.percent');
+          const target=parseInt(bar.dataset.width);
+
+          const maxBlur=8;
+          const duration=2500; // slower percentage
+          const start=performance.now();
+
+          function animate(t){
+            const progress=Math.min((t-start)/duration,1);
+            const value=Math.round(progress*target);
+
+            percent.textContent=value+"%";
+            bar.style.width=value+"%";
+            card.style.filter=`blur(${maxBlur*(1-progress)}px)`;
+
+            if(progress<1) requestAnimationFrame(animate);
+            else card.style.filter="blur(0px)";
+          }
+
+          requestAnimationFrame(animate);
+        });
+      }
     }
   });
 },{threshold:.3});
@@ -566,7 +656,7 @@ document.querySelectorAll("section").forEach(s=>observer.observe(s));
 /* MOUSE GLOW (DESKTOP ONLY) */
 if(!('ontouchstart' in window)){
   let mx=innerWidth/2,my=innerHeight/2,gx=mx,gy=my;
-  const lag=0.08;
+  const lag=0.15;
   addEventListener("mousemove",e=>{mx=e.clientX;my=e.clientY});
   (function glow(){
     gx+=(mx-gx)*lag;
@@ -589,20 +679,70 @@ if(!('ontouchstart' in window)){
     btn.addEventListener('mouseleave',()=>btn.style.transform='translate(0)');
   });
 }
-  const heroText = document.querySelector('.hero-center-text');
 
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const fadePoint = window.innerHeight * 0.4;
+/* PROJECT MODAL POPUP */
+const modal = document.getElementById("projectModal");
+const modalTitle = document.getElementById("modalTitle");
+const modalDesc = document.getElementById("modalDesc");
+const modalClose = document.getElementById("modalClose");
 
-  const opacity = Math.max(0, 1 - scrollY / fadePoint);
-  const translateY = -50 - scrollY * 0.05;
-
-  heroText.style.opacity = opacity;
-  heroText.style.transform = `translate(-50%, ${translateY}%)`;
+document.querySelectorAll(".project").forEach(card=>{
+  card.addEventListener("click",()=>{
+    modalTitle.textContent = card.dataset.title;
+    modalDesc.textContent = card.dataset.desc;
+    modal.classList.add("show");
+  });
 });
-  
+
+modalClose.addEventListener("click",()=>{
+  modal.classList.remove("show");
+});
+
+modal.addEventListener("click",(e)=>{
+  if(e.target === modal) modal.classList.remove("show");
+});
+
+/* SCROLL SPY (ACTIVE NAV LINK) */
+const navLinks = document.querySelectorAll(".nav-link");
+const sections = ["about","skills","projects","contact"].map(id=>document.getElementById(id));
+
+function setActiveLink(){
+  const scrollPos = window.scrollY + 120;
+
+  if(scrollPos < document.getElementById("about").offsetTop){
+    navLinks.forEach(a => a.classList.remove("active"));
+    return;
+  }
+
+  let current = "about";
+
+  sections.forEach(sec=>{
+    if(sec.offsetTop <= scrollPos) current = sec.id;
+  });
+
+  navLinks.forEach(a=>{
+    const href = a.getAttribute("href");
+    if(href === "#" + current) a.classList.add("active");
+    else a.classList.remove("active");
+  });
+}
+
+
+window.addEventListener("scroll", setActiveLink);
+setActiveLink();
+/* CARD REVEAL ON SCROLL */
+const cardObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add("show-card");
+    }
+  });
+},{threshold:0.2});
+
+document.querySelectorAll(".reveal-card").forEach(card=>{
+  cardObserver.observe(card);
+});
+
 </script>
 </body>
 </html>
-      
