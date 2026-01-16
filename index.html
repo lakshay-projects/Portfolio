@@ -461,21 +461,118 @@ footer{
   opacity:1;
   transform:translateY(0) scale(1);
 }
+  /* MOBILE MENU BUTTON */
+.menu-btn{
+  display:none;
+  width:44px;
+  height:44px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.35);
+  color:white;
+  font-size:20px;
+  cursor:pointer;
+}
+
+/* MOBILE DRAWER MENU */
+.mobile-menu{
+  position:fixed;
+  top:0;
+  right:-100%;
+  width:min(320px, 85vw);
+  height:100vh;
+  padding:22px;
+  background:rgba(15,18,26,.85);
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+  border-left:1px solid rgba(255,255,255,.10);
+  transition:right .35s ease;
+  z-index:9999;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.mobile-menu.show{
+  right:0;
+}
+
+.mobile-menu a{
+  text-decoration:none !important;
+  color:white;
+  font-size:16px;
+  padding:14px 14px;
+  border-radius:16px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.mobile-menu a.nav-btn{
+  background:var(--accent);
+  color:black !important;
+  font-weight:700;
+}
+
+/* MENU OVERLAY */
+.menu-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+  -webkit-backdrop-filter:blur(4px);
+  opacity:0;
+  pointer-events:none;
+  transition:.25s;
+  z-index:9998;
+}
+
+.menu-overlay.show{
+  opacity:1;
+  pointer-events:auto;
+}
+
+/* SHOW HAMBURGER ON MOBILE */
+@media(max-width:900px){
+  header nav{
+    display:none;
+  }
+  .menu-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+  }
+}
 
 </style>
 </head>
 
 <body>
 
-<header>
+  <header>
   <h3>LakshayKumar</h3>
+
+  <!-- Desktop Nav -->
   <nav>
     <a href="#about" class="nav-link">About</a>
     <a href="#skills" class="nav-link">Skills</a>
     <a href="#projects" class="nav-link">Projects</a>
     <a href="#contact" class="nav-link nav-btn">Contact</a>
   </nav>
+
+  <!-- Mobile Menu Button -->
+  <button class="menu-btn" id="menuBtn">☰</button>
 </header>
+
+<!-- Mobile Overlay -->
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- Mobile Drawer -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" class="mobile-link">About</a>
+  <a href="#skills" class="mobile-link">Skills</a>
+  <a href="#projects" class="mobile-link">Projects</a>
+  <a href="#contact" class="mobile-link nav-btn">Contact</a>
+</div>
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -741,6 +838,30 @@ const cardObserver = new IntersectionObserver((entries)=>{
 
 document.querySelectorAll(".reveal-card").forEach(card=>{
   cardObserver.observe(card);
+});
+  /* MOBILE MENU OPEN/CLOSE */
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+function openMenu(){
+  mobileMenu.classList.add("show");
+  menuOverlay.classList.add("show");
+}
+
+function closeMenu(){
+  mobileMenu.classList.remove("show");
+  menuOverlay.classList.remove("show");
+}
+
+menuBtn.addEventListener("click", openMenu);
+menuOverlay.addEventListener("click", closeMenu);
+
+/* Close menu when link clicked */
+document.querySelectorAll(".mobile-link").forEach(link=>{
+  link.addEventListener("click", ()=>{
+    closeMenu();
+  });
 });
 
 </script>
