@@ -901,6 +901,31 @@ document.querySelectorAll(".mobile-link").forEach(link=>{
   /* Close button inside menu */
 const menuClose = document.getElementById("menuClose");
 menuClose.addEventListener("click", closeMenu);
+  /* AUTO OPEN MENU ON HOVER (DESKTOP ONLY) */
+if(!('ontouchstart' in window)){
+  let closeTimer;
+
+  function delayedClose(){
+    closeTimer = setTimeout(()=> closeMenu(), 250);
+  }
+
+  function cancelClose(){
+    clearTimeout(closeTimer);
+  }
+
+  // Hover on menu button -> open
+  menuBtn.addEventListener("mouseenter", ()=>{
+    cancelClose();
+    openMenu();
+  });
+
+  mobileMenu.addEventListener("mouseenter", cancelClose);
+
+  menuBtn.addEventListener("mouseleave", delayedClose);
+
+  mobileMenu.addEventListener("mouseleave", delayedClose);
+}
+
 
 
 </script>
