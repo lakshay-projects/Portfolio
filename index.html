@@ -542,6 +542,33 @@ footer{
     justify-content:center;
   }
 }
+  /* Mobile menu header row */
+.mobile-menu-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:10px;
+}
+
+.mobile-menu-title{
+  color:rgba(255,255,255,.7);
+  font-size:14px;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* Close button inside menu */
+.menu-close{
+  width:42px;
+  height:42px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(0,0,0,.35);
+  color:white;
+  font-size:18px;
+  cursor:pointer;
+}
+
 
 </style>
 </head>
@@ -568,11 +595,19 @@ footer{
 
 <!-- Mobile Drawer -->
 <div class="mobile-menu" id="mobileMenu">
+
+  <div class="mobile-menu-top">
+    <span class="mobile-menu-title">Menu</span>
+    <button class="menu-close" id="menuClose">✕</button>
+  </div>
+
   <a href="#about" class="mobile-link">About</a>
   <a href="#skills" class="mobile-link">Skills</a>
   <a href="#projects" class="mobile-link">Projects</a>
   <a href="#contact" class="mobile-link nav-btn">Contact</a>
+
 </div>
+
 
 <!-- HERO -->
 <section class="hero" id="top">
@@ -863,6 +898,10 @@ document.querySelectorAll(".mobile-link").forEach(link=>{
     closeMenu();
   });
 });
+  /* Close button inside menu */
+const menuClose = document.getElementById("menuClose");
+menuClose.addEventListener("click", closeMenu);
+
 
 </script>
 </body>
